@@ -1,0 +1,46 @@
+LAB 4
+
+1.1
+alter table projekt drop foreign key projekt_ibfk_1;
+alter table zadanie drop foreign key zadanie_ibfk_1;
+1.2
+alter table pracownik drop constraint id_pracownika;
+1.3
+alter table pracownik add primary key (id_pracownika);
+1.4
+alter table zadanie add foreign key(sprint) references sprint(id_sprintu) on delete set null;
+alter table zadanie add foreign key(projekt) references projekt(id_projektu) on delete cascade;
+
+2.1
+alter table zadanie add column godziny_szacowane int default 8;
+update zadanie set godziny_szacowane = "4" where id_zadania=1;
+2.2
+update zadanie set godziny_szacowane = "4" where id_zadania=1;
+update zadanie set godziny_szacowane = "12" where id_zadania=2;
+update zadanie set godziny_szacowane = "16" where id_zadania=3;
+2.3
+alter table zadanie alter column godziny_szacowane set default '6';
+2.4
+insert into zadanie values (default, "zadanie", "niski", "opis", "1", "3", "2", "";
+delete from zadanie where id_zadania = "4";
+
+
+3.1
+alter table projekt add column opis_projektu varchar(50);
+3.2
+alter table projekt modify column opis_projektu varchar(200);
+3.3
+update projekt set opis_projektu = "MVP" where id_projektu=1;
+update projekt set opis_projektu = "pilne" where id_projektu=2;
+3.4
+alter table projekt drop column opis_projektu;
+
+
+4.1
+alter table zadanie drop foreign key projekt_ibfk_3;
+4.2
+alter table zadanie add foreign key(projekt) references projekt(id_projektu) on delete set null;
+4.3
+delete from projekt where id_projektu = "1";
+4.4
+select * from zadanie;
